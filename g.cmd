@@ -9,6 +9,8 @@ if x%1==xps GOTO push
 if x%1==xl GOTO log
 if x%1==xl1 GOTO logOneline
 if x%1==xt GOTO test
+if x%1==xr GOTO remote_list
+if x%1==xrgs GOTO remote_set_url
 if x%1==xrg GOTO remote_github
 GOTO exit
 
@@ -30,6 +32,8 @@ GOTO exit
 @echo     g ps      : git push
 @echo     g l       : git log
 @echo     g l1      : git log --oneline
+@echo     g r       : git remote -v
+@echo     g rgs     : git remote set-url github "<repo_url>"
 @echo     g rg      : git remote add github "<repo_url>" and set it as default remote for master
 @echo     g h       : This help message
 @echo off
@@ -76,6 +80,20 @@ SET oneline=--oneline
 :log
 @echo on
 git log %oneline%
+@echo off
+GOTO exit
+
+##############################################################
+:remote_list
+@echo on
+git remote -v
+@echo off
+GOTO exit
+
+##############################################################
+:remote_set_url
+@echo on
+git remote set-url github %2
 @echo off
 GOTO exit
 
