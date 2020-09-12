@@ -1,2 +1,2 @@
-# common.misc.vyGit.cmd
-vy-common-misc-git
+# vyGit.cmd
+A batch file to expedite many git commands.
