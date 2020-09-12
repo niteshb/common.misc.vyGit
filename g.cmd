@@ -1,4 +1,5 @@
 @echo off
+if x%VY_GIT_CMD_REMOTE%==x SET VY_GIT_CMD_REMOTE=github
 if x%1==xh   GOTO help
 if x%1==x    GOTO help
 if x%1==xa   GOTO add
@@ -20,13 +21,6 @@ echo Invalid command. Type 'g h' to get help
 GOTO exit
 
 ##############################################################
-:test
-@echo on
-echo check %2
-@echo off
-GOTO exit
-
-##############################################################
 :help
 @echo on
 @echo Command Options:
@@ -38,13 +32,17 @@ GOTO exit
 @echo     g l       : git log
 @echo     g l1      : git log --oneline
 @echo     g r       : git remote -v
-@echo     g rgs     : git remote set-url github ^<repo_url^>
-@echo     g rg      : git remote add github ^<repo_url^> : Also sets it as default remote for master
+@echo     g rgs     : git remote set-url %VY_GIT_CMD_REMOTE% ^<repo_url^>
+@echo     g rg      : git remote add %VY_GIT_CMD_REMOTE% ^<repo_url^> : Also sets %VY_GIT_CMD_REMOTE% as default remote for master
 @echo     g us      : git restore --staged [file1] [file2] [file3] ... : Unstage files
 @echo     g rm      : git rm [file1] [file2] [file3] ... : Delete files
 @echo     g i       : git init
 @echo     g cl      : git clone ^<repo_url^> [target_dir]
 @echo     g h       : This help message
+@echo.
+@echo Set environment variable 'VY_GIT_CMD_REMOTE' to set remote.
+@echo If environment variable 'VY_GIT_CMD_REMOTE' is unset, then it defaults to 'github'.
+@echo Remote is presently set to '%VY_GIT_CMD_REMOTE%'.
 @echo off
 GOTO exit
 
@@ -84,14 +82,14 @@ git push
 GOTO exit
 
 ##############################################################
-SET GIT_CMD_ONELINE=
+SET VY_GIT_CMD_ONELINE=
 :logOneline
-SET GIT_CMD_ONELINE=--oneline
+SET VY_GIT_CMD_ONELINE=--oneline
 :log
 @echo on
-git log %GIT_CMD_ONELINE%
+git log %VY_GIT_CMD_ONELINE%
 @echo off
-SET GIT_CMD_ONELINE=
+SET VY_GIT_CMD_ONELINE=
 GOTO exit
 
 ##############################################################
@@ -104,15 +102,15 @@ GOTO exit
 ##############################################################
 :remote_set_url
 @echo on
-git remote set-url github %2
+git remote set-url %VY_GIT_CMD_REMOTE% %2
 @echo off
 GOTO exit
 
 ##############################################################
 :remote_github
 @echo on
-git remote add github %2
-git config branch.master.remote github
+git remote add %VY_GIT_CMD_REMOTE% %2
+git config branch.master.remote %VY_GIT_CMD_REMOTE%
 git config branch.master.merge refs/heads/master
 @echo off
 GOTO exit
