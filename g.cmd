@@ -38,12 +38,12 @@ GOTO exit
 @echo     g l       : git log
 @echo     g l1      : git log --oneline
 @echo     g r       : git remote -v
-@echo     g rgs     : git remote set-url github <repo_url>
-@echo     g rg      : git remote add github <repo_url> : Also sets it as default remote for master
+@echo     g rgs     : git remote set-url github ^<repo_url^>
+@echo     g rg      : git remote add github ^<repo_url^> : Also sets it as default remote for master
 @echo     g us      : git restore --staged [file1] [file2] [file3] ... : Unstage files
 @echo     g rm      : git rm [file1] [file2] [file3] ... : Delete files
 @echo     g i       : git init
-@echo     g cl      : git clone <repo_url> [target_dir]
+@echo     g cl      : git clone ^<repo_url^> [target_dir]
 @echo     g h       : This help message
 @echo off
 GOTO exit
