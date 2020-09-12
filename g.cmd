@@ -12,6 +12,7 @@ if x%1==xt GOTO test
 if x%1==xr GOTO remote_list
 if x%1==xrgs GOTO remote_set_url
 if x%1==xrg GOTO remote_github
+if x%1==xrm GOTO remove_from_staged
 GOTO exit
 
 ##############################################################
@@ -25,7 +26,7 @@ GOTO exit
 :help
 @echo on
 @echo Command Options:
-@echo     g a       : git add [file2] [file3] [file4] [file5] [file6]
+@echo     g a       : git add [file1] [file2] [file3] ...
 @echo     g c       : git commit -m "<msg>"
 @echo     g s       : git status
 @echo     g pl      : git pull --rebase
@@ -35,6 +36,7 @@ GOTO exit
 @echo     g r       : git remote -v
 @echo     g rgs     : git remote set-url github "<repo_url>"
 @echo     g rg      : git remote add github "<repo_url>" and set it as default remote for master
+@echo     g rm      : git restore --staged [file1] [file2] [file3] ... (remove from staged)
 @echo     g h       : This help message
 @echo off
 GOTO exit
@@ -42,7 +44,7 @@ GOTO exit
 ##############################################################
 :add
 @echo on
-git add %2 %3 %4 %5
+git add %2 %3 %4 %5 %6 %7 %8 %9
 @echo off
 GOTO exit
 
@@ -103,6 +105,13 @@ GOTO exit
 git remote add github %2
 git config branch.master.remote github
 git config branch.master.merge refs/heads/master
+@echo off
+GOTO exit
+
+##############################################################
+:remove_from_staged
+@echo on
+git restore --staged %2 %3 %4 %5 %6 %7 %8 %9
 @echo off
 GOTO exit
 
