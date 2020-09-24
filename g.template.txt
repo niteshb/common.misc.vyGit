@@ -1,0 +1,20 @@
+@echo off
+{{ ev[0] }}##############################################################
+{{ cmd[{COIdx.MainShortSwitcher}] }}##############################################################
+{{ cmd[{COIdx.OtherShortsSwitcher}] }}##############################################################
+{{ cmd[{COIdx.SubCommandsSwitcher}] }}GOTO label_invalid
+
+##############################################################
+:label_invalid
+echo Invalid command. Type 'g h' to get help
+GOTO label_exit
+
+##############################################################
+:label_help
+@echo on
+@echo Command Options:
+{{ cmd[{COIdx.HelpSnippets}] }}{{ ev[1] }}@echo off
+GOTO label_exit
+
+{{ cmd[{COIdx.Commands}] }}##############################################################
+:label_exit
