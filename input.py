@@ -58,10 +58,10 @@ commands = [
         },
     ),
     (
-        ['r s', 'r su'], 
+        ['r s', 'r set'], 
         ['git remote set-url %VY_GIT_CMD_REMOTE% %3'],
         {
-            'label': 'remote_set_url',
+            'label': 'remote_set',
             'snippet': 'git remote set-url %VY_GIT_CMD_REMOTE% ^<repo_url^>',
         },
     ),

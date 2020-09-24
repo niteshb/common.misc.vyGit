@@ -1,7 +1,7 @@
 @echo off
 if x%VY_GIT_CMD_REMOTE%==x SET VY_GIT_CMD_REMOTE=github
 if x%VY_GIT_CMD_BRANCH%==x SET VY_GIT_CMD_BRANCH=master
-##############################################################
+:label_MainShortSwitcher
 if x%1==xh         GOTO label_help
 if x%1==xa         GOTO label_add
 if x%1==xc         GOTO label_commit
@@ -15,17 +15,17 @@ if x%1==xus        GOTO label_unstage
 if x%1==xrm        GOTO label_delete
 if x%1==xi         GOTO label_init
 if x%1==xcl        GOTO label_clone
-##############################################################
+:label_OtherShortsSwitcher
 if x%1==x          GOTO label_help
 if x%1==x-h        GOTO label_help
 if x%1==x--help    GOTO label_help
-##############################################################
+:label_SubCommandsSwitcher
 :label_remote
 if x%2==x          GOTO label_remote_list
 if x%2==xl         GOTO label_remote_list
 if x%2==xlist      GOTO label_remote_list
-if x%2==xs         GOTO label_remote_set_url
-if x%2==xsu        GOTO label_remote_set_url
+if x%2==xs         GOTO label_remote_set
+if x%2==xset       GOTO label_remote_set
 if x%2==xa         GOTO label_remote_add
 GOTO label_invalid
 
@@ -54,13 +54,8 @@ GOTO label_exit
 @echo     g i         : git init
 @echo     g cl        : git clone ^<repo_url^> [target_dir]
 @echo.
-@echo Set environment variable 'VY_GIT_CMD_REMOTE' to set remote.
-@echo If environment variable 'VY_GIT_CMD_REMOTE' is unset, then it defaults to 'github'.
-@echo Remote is presently set to '%VY_GIT_CMD_REMOTE%'.
-@echo.
-@echo Set environment variable 'VY_GIT_CMD_BRANCH' to set branch.
-@echo If environment variable 'VY_GIT_CMD_BRANCH' is unset, then it defaults to 'master'.
-@echo Branch is presently set to '%VY_GIT_CMD_BRANCH%'.
+@echo Set environment variable 'VY_GIT_CMD_REMOTE' to set remote. default='github', current='%VY_GIT_CMD_REMOTE%'
+@echo Set environment variable 'VY_GIT_CMD_BRANCH' to set branch. default='master', current='%VY_GIT_CMD_BRANCH%'
 @echo off
 GOTO label_exit
 
@@ -121,7 +116,7 @@ git remote -v
 GOTO label_exit
 
 ##############################################################
-:label_remote_set_url
+:label_remote_set
 @echo on
 git remote set-url %VY_GIT_CMD_REMOTE% %3
 @echo off

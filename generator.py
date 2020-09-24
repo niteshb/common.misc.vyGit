@@ -6,10 +6,7 @@ ofid = open(outputFileName, 'w')
 
 envVarTemplates = [
     """if x%VY_GIT_CMD_{suffix}%==x SET VY_GIT_CMD_{suffix}={default}
-""", """@echo.
-@echo Set environment variable 'VY_GIT_CMD_{suffix}' to set {target}.
-@echo If environment variable 'VY_GIT_CMD_{suffix}' is unset, then it defaults to '{default}'.
-@echo {Target} is presently set to '%VY_GIT_CMD_{suffix}%'.
+""", """@echo Set environment variable 'VY_GIT_CMD_{suffix}' to set {target}. default='{default}', current='%VY_GIT_CMD_{suffix}%'
 """,
 ]
 
