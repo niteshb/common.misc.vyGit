@@ -15,10 +15,37 @@ commands = [
         },
     ),
     (
-        ['c'], 
+        ['c'],
         ['git commit -m %2'],
         {
-            'snippet': 'git commit -m "<msg>"',
+            'snippet': 'git commit -m "<msg>" : Commits staged with message provided',
+            'label': 'commit_message_staged',
+            'parent-label': 'commit_message',
+        },
+    ),
+    (
+        ['c a'],
+        ['git commit -a -m %2'],
+        {
+            'snippet': 'git commit -a -m "<msg>" : Stages all ^& commits with message provided',
+            'label': 'commit_message_all',
+        },
+    ),
+    (
+        ['ce'], 
+        ['git commit'],
+        {
+            'snippet': 'git commit : Opens your editor for commit message',
+            'label': 'commit_editor_staged',
+            'parent-label': 'commit_editor',
+        },
+    ),
+    (
+        ['ce a'], 
+        ['git commit -a'],
+        {
+            'snippet': 'git commit -a : Stages all ^& opens your editor for commit message',
+            'label': 'commit_editor_all',
         },
     ),
     (
@@ -154,7 +181,7 @@ commands = [
         ['b rm', 'b del'],
         ['git branch -d %3'],
         {
-            'snippet': 'git branch -d ^<branch^>: Delete merged branch',
+            'snippet': 'git branch -d ^<branch^> : Delete merged branch',
             'label': 'branch_delete',
         },
     ),
@@ -162,7 +189,7 @@ commands = [
         ['b delU'],
         ['git branch -D %3'],
         {
-            'snippet': 'git branch -D ^<branch^>: Delete unmerged branch',
+            'snippet': 'git branch -D ^<branch^> : Delete unmerged branch',
             'label': 'branch_delete_unmerged',
         },
     ),
@@ -170,7 +197,7 @@ commands = [
         ['b ren'],
         ['git branch -m %3 %4'],
         {
-            'snippet': 'git branch -m ^<old-branch-name^> ^<new-branch-name^>: Rename unmerged branch',
+            'snippet': 'git branch -m ^<old-branch-name^> ^<new-branch-name^> : Rename unmerged branch',
             'label': 'branch_rename',
         },
     ),
@@ -178,7 +205,7 @@ commands = [
         ['df', 'dif', 'diff'],
         ['git difftool --no-prompt %2'],
         {
-            'snippet': 'git difftool --no-prompt <file/folder>',
+            'snippet': 'git difftool --no-prompt ^<filefolder^>',
         },
     ),
 ]

@@ -4,7 +4,8 @@ if x%VY_GIT_CMD_BRANCH%==x SET VY_GIT_CMD_BRANCH=master
 :label_MainShortSwitcher
 if x%1==xh         GOTO label_help
 if x%1==xa         GOTO label_add
-if x%1==xc         GOTO label_commit
+if x%1==xc         GOTO label_commit_message
+if x%1==xce        GOTO label_commit_editor
 if x%1==xs         GOTO label_status
 if x%1==xss        GOTO label_status_short
 if x%1==xpl        GOTO label_pull
@@ -25,6 +26,12 @@ if x%1==x--help    GOTO label_help
 if x%1==xdif       GOTO label_difftool
 if x%1==xdiff      GOTO label_difftool
 :label_SubCommandsSwitcher
+:label_commit_message
+if x%2==x          GOTO label_commit_message_staged
+if x%2==xa         GOTO label_commit_message_all
+:label_commit_editor
+if x%2==x          GOTO label_commit_editor_staged
+if x%2==xa         GOTO label_commit_editor_all
 :label_remote
 if x%2==x          GOTO label_remote_list
 if x%2==xl         GOTO label_remote_list
@@ -56,7 +63,10 @@ GOTO label_exit
 @echo Command Options:
 @echo     g h         : This help message
 @echo     g a         : git add [file1] [file2] [file3] ...
-@echo     g c         : git commit -m "<msg>"
+@echo     g c         : git commit -m "<msg>" : Commits staged with message provided
+@echo     g c a       : git commit -a -m "<msg>" : Stages all ^& commits with message provided
+@echo     g ce        : git commit : Opens your editor for commit message
+@echo     g ce a      : git commit -a : Stages all ^& opens your editor for commit message
 @echo     g s         : git status
 @echo     g ss        : git status -s
 @echo     g pl        : git pull --rebase %VY_GIT_CMD_REMOTE% %VY_GIT_CMD_BRANCH%
@@ -74,10 +84,10 @@ GOTO label_exit
 @echo     g b sw      : git switch ^<branch^>
 @echo     g b csw     : git switch ^<branch^> after creating it: Create ^& switch branch
 @echo     g b c       : git branch ^<branch^>: Create branch
-@echo     g b rm      : git branch -d ^<branch^>: Delete merged branch
-@echo     g b delU    : git branch -D ^<branch^>: Delete unmerged branch
-@echo     g b ren     : git branch -m ^<old-branch-name^> ^<new-branch-name^>: Rename unmerged branch
-@echo     g df        : git difftool --no-prompt <file/folder>
+@echo     g b rm      : git branch -d ^<branch^> : Delete merged branch
+@echo     g b delU    : git branch -D ^<branch^> : Delete unmerged branch
+@echo     g b ren     : git branch -m ^<old-branch-name^> ^<new-branch-name^> : Rename unmerged branch
+@echo     g df        : git difftool --no-prompt ^<filefolder^>
 @echo.
 @echo Set environment variable 'VY_GIT_CMD_REMOTE' to set remote. default='github', current='%VY_GIT_CMD_REMOTE%'
 @echo Set environment variable 'VY_GIT_CMD_BRANCH' to set branch. default='master', current='%VY_GIT_CMD_BRANCH%'
@@ -92,9 +102,30 @@ git add %2 %3 %4 %5 %6 %7 %8 %9
 GOTO label_exit
 
 ##############################################################
-:label_commit
+:label_commit_message_staged
 @echo on
 git commit -m %2
+@echo off
+GOTO label_exit
+
+##############################################################
+:label_commit_message_all
+@echo on
+git commit -a -m %2
+@echo off
+GOTO label_exit
+
+##############################################################
+:label_commit_editor_staged
+@echo on
+git commit
+@echo off
+GOTO label_exit
+
+##############################################################
+:label_commit_editor_all
+@echo on
+git commit -a
 @echo off
 GOTO label_exit
 

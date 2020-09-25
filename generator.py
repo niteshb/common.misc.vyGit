@@ -50,7 +50,7 @@ for commandInfo in commands:
     order = len(short.split())
     hasSubCommands = True if (order > 1) else False
     subCommandSwitcher = hasSubCommands or plabel
-    if plabel: 
+    if plabel: # puts parent command's label in SubCommandsSwitcher
         cmdOutputs[COIdx.SubCommandsSwitcher] += ':label_' + plabel + '\n'
     for idx, cmdTemplate in enumerate(cmdTemplates):
         if not(
@@ -67,7 +67,7 @@ for commandInfo in commands:
     shortsStartIdx = 0 if subCommandSwitcher else 1
     for short in shorts[shortsStartIdx:]:
         coIdx = COIdx.SubCommandsSwitcher if subCommandSwitcher else COIdx.OtherShortsSwitcher
-        cShort = short[1:].strip() if subCommandSwitcher else short
+        cShort = (short + ' ').split(' ')[1] if subCommandSwitcher else short
         cmdOutputs[coIdx] += cmdTemplates[0].format(
             short=cShort,
             label=label,
