@@ -29,6 +29,8 @@ if x%1==xdiff      GOTO label_difftool
 :label_commit_message
 if x%2==x          GOTO label_commit_message_staged
 if x%2==xa         GOTO label_commit_message_all
+if x%2==xfix       GOTO label_commit_amend
+if x%2==xamend     GOTO label_commit_amend
 :label_commit_editor
 if x%2==x          GOTO label_commit_editor_staged
 if x%2==xa         GOTO label_commit_editor_all
@@ -50,6 +52,7 @@ if x%2==xrm        GOTO label_branch_delete
 if x%2==xdel       GOTO label_branch_delete
 if x%2==xdelU      GOTO label_branch_delete_unmerged
 if x%2==xren       GOTO label_branch_rename
+if x%2==xvsc       GOTO label_config
 GOTO label_invalid
 
 ##############################################################
@@ -65,6 +68,7 @@ GOTO label_exit
 @echo     g a         : git add [file1] [file2] [file3] ...
 @echo     g c         : git commit -m "<msg>" : Commits staged with message provided
 @echo     g c a       : git commit -a -m "<msg>" : Stages all ^& commits with message provided
+@echo     g c fix     : git commit --amend : Change your previous commit message
 @echo     g ce        : git commit : Opens your editor for commit message
 @echo     g ce a      : git commit -a : Stages all ^& opens your editor for commit message
 @echo     g s         : git status
@@ -87,7 +91,8 @@ GOTO label_exit
 @echo     g b rm      : git branch -d ^<branch^> : Delete merged branch
 @echo     g b delU    : git branch -D ^<branch^> : Delete unmerged branch
 @echo     g b ren     : git branch -m ^<old-branch-name^> ^<new-branch-name^> : Rename unmerged branch
-@echo     g df        : git difftool --no-prompt ^<filefolder^>
+@echo     g df        : git difftool --no-prompt ^<file/folder^>
+@echo     g con vsc   : Configure VSCode as git editor, difftool ^& mergetool
 @echo.
 @echo Set environment variable 'VY_GIT_CMD_REMOTE' to set remote. default='github', current='%VY_GIT_CMD_REMOTE%'
 @echo Set environment variable 'VY_GIT_CMD_BRANCH' to set branch. default='master', current='%VY_GIT_CMD_BRANCH%'
@@ -112,6 +117,13 @@ GOTO label_exit
 :label_commit_message_all
 @echo on
 git commit -a -m %2
+@echo off
+GOTO label_exit
+
+##############################################################
+:label_commit_amend
+@echo on
+git commit --amend
 @echo off
 GOTO label_exit
 
@@ -277,6 +289,17 @@ GOTO label_exit
 :label_difftool
 @echo on
 git difftool --no-prompt %2
+@echo off
+GOTO label_exit
+
+##############################################################
+:label_config
+@echo on
+git config --global core.editor "code --wait"
+git config --global merge.tool vscode
+git config --global mergetool.vscode.cmd "code --wait $MERGED"
+git config --global diff.tool vscode
+git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"
 @echo off
 GOTO label_exit
 

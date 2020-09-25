@@ -32,6 +32,14 @@ commands = [
         },
     ),
     (
+        ['c fix', 'c amend'],
+        ['git commit --amend'],
+        {
+            'snippet': 'git commit --amend : Change your previous commit message',
+            'label': 'commit_amend',
+        },
+    ),
+    (
         ['ce'], 
         ['git commit'],
         {
@@ -205,7 +213,20 @@ commands = [
         ['df', 'dif', 'diff'],
         ['git difftool --no-prompt %2'],
         {
-            'snippet': 'git difftool --no-prompt ^<filefolder^>',
+            'snippet': 'git difftool --no-prompt ^<file/folder^>',
+        },
+    ),
+    (
+        ['con vsc'],
+        [
+            'git config --global core.editor "code --wait"',
+            'git config --global merge.tool vscode',
+            'git config --global mergetool.vscode.cmd "code --wait $MERGED"',
+            'git config --global diff.tool vscode',
+            'git config --global difftool.vscode.cmd "code --wait --diff $LOCAL $REMOTE"',
+        ],
+        {
+            'snippet': 'Configure VSCode as git editor, difftool ^& mergetool',
         },
     ),
 ]
