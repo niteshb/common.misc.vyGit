@@ -1,0 +1,19 @@
+make
+    --vyabsg-no-command--
+    label: --vyabsg-null-label--
+        h, --vyabsg-null-alias--, -h, --help
+            --vyabsg-no-command--
+            label: help
+            snippet: This help message
+        git
+            python ..\..\python\vyAlias\tests\main.py input/git.vyalias -o output -f g.vyalias.cmd
+            python ..\..\python\vyAlias\tests\main.py input/git.vyalias.py -o output -f g.py.cmd
+            label: git
+            snippet: <= Generate git alias files from both, vyalias & python, config files
+        link
+            del g.cmd
+            mklink g.cmd output\g.vyalias.cmd
+        make
+            python ../../python/vyAlias/tests/main.py input/makefile.vyalias
+            snippet: <= Generates this make batch file from its config file
+            label: make

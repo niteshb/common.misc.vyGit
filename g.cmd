@@ -1,1 +1,1 @@
-p:/@common/python/vyAliasBatchScriptGenerator/tests/test-git-aliases/output/g.vyalias.cmd
+output/g.vyalias.cmd
