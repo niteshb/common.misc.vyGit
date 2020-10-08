@@ -25,15 +25,15 @@ REM Actual start of the program
 :label_start
 
 :label_Switcher
-if x%VY_ALIAS_BATCH_GEN_NO_DEBUG%==x echo label_Switcher & REM (Switcher) <- (help)
-if x%1==xh         GOTO label_help
-if x%1==x          GOTO label_help
-if x%1==x-h        GOTO label_help
-if x%1==x--help    GOTO label_help
-if x%1==xgit       GOTO label_git
-if x%1==xlink      GOTO label_del
-if x%1==xmake      GOTO label_make
-GOTO label_invalid & REM (Switcher) <- (make)
+if x%VY_ALIAS_BATCH_GEN_NO_DEBUG%==x echo label_Switcher & REM (Switcher) <- (make_help)
+if x%1==xh         GOTO label_make_help
+if x%1==x          GOTO label_make_help
+if x%1==x-h        GOTO label_make_help
+if x%1==x--help    GOTO label_make_help
+if x%1==xgit       GOTO label_make_git
+if x%1==xlink      GOTO label_make_link
+if x%1==xmake      GOTO label_make_make
+GOTO label_invalid & REM (Switcher) <- (make_make)
 
 ##############################################################
 :label_invalid
@@ -41,7 +41,7 @@ echo Invalid command. Type '%0 h' to get help
 GOTO label_exit
 
 ##############################################################
-:label_help
+:label_make_help
 @echo on
 @echo Command Options:
 @echo   make h        : This help message
@@ -53,7 +53,7 @@ GOTO label_exit
 GOTO label_exit
 
 ##############################################################
-:label_git
+:label_make_git
 @echo on
 python ..\..\python\vyAlias\tests\main.py input/git.vyalias -o output -f g.vyalias.cmd
 python ..\..\python\vyAlias\tests\main.py input/git.vyalias.py -o output -f g.py.cmd
@@ -61,7 +61,7 @@ python ..\..\python\vyAlias\tests\main.py input/git.vyalias.py -o output -f g.py
 GOTO label_exit
 
 ##############################################################
-:label_del
+:label_make_link
 @echo on
 del g.cmd
 mklink g.cmd output\g.vyalias.cmd
@@ -69,7 +69,7 @@ mklink g.cmd output\g.vyalias.cmd
 GOTO label_exit
 
 ##############################################################
-:label_make
+:label_make_make
 @echo on
 python ../../python/vyAlias/tests/main.py input/makefile.vyalias
 @echo off

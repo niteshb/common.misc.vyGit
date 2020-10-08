@@ -4,6 +4,8 @@ envVarInfos = [
     ('BRANCH', {'default': 'master', }),
 ]
 
+configInfos = {'label-source': 'command'}
+
 aliasInfosLevel1 = [
     (
         ['h', '', '-h', '--help'], 

@@ -1,10 +1,8 @@
 make
-    --vyabsg-no-command--
-    label: --vyabsg-null-label--
+    ## needed to set indent
         git
             python ..\..\python\vyAlias\tests\main.py input/git.vyalias -o output -f g.vyalias.cmd
             python ..\..\python\vyAlias\tests\main.py input/git.vyalias.py -o output -f g.py.cmd
-            label: git
             snippet: <= Generate git alias files from both, vyalias & python, config files
         link
             del g.cmd
@@ -12,4 +10,3 @@ make
         make
             python ../../python/vyAlias/tests/main.py input/makefile.vyalias
             snippet: <= Generates this make batch file from its config file
-            label: make
