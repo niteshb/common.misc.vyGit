@@ -1,10 +1,6 @@
 g
     git
     label: --vyabsg-null-label--
-        h, --vyabsg-null-alias--, -h, --help
-            --vyabsg-no-command--
-            label: help
-            snippet: This help message
         a
             add <file1> [file2] [file3] ...
         cm
