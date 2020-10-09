@@ -1,3 +1,3 @@
 # vyGit.cmd
 
-A windows batch file to expedite many git commands.
+A windows alias batch file for git commands.

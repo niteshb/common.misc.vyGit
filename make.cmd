@@ -56,7 +56,6 @@ GOTO label_exit
 :label_make_git
 @echo on
 python ..\..\python\vyAlias\tests\main.py input/git.vyalias -o output -f g.vyalias.cmd
-python ..\..\python\vyAlias\tests\main.py input/git.vyalias.py -o output -f g.py.cmd
 @echo off
 GOTO label_exit
 

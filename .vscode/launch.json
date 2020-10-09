@@ -14,7 +14,7 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "git vyalias",
+            "name": "git.vyalias",
             "type": "python",
             "request": "launch",
             "program": "../../python/vyAlias/tests/main.py",
