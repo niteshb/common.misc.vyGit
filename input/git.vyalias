@@ -154,3 +154,6 @@ vyalias: envvar
 
 vyalias: config
     label-source: command
+    color-alias: green
+    color-command: red
+    color-snippet: yellow

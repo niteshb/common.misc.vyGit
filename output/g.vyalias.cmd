@@ -111,40 +111,40 @@ GOTO label_exit
 :label_help
 @echo on
 @echo Command Options:
-@echo   g h           : This help message
-@echo   g a           : git add ^<file1^> [file2] [file3] ... : Add files to staging area
-@echo   g us          : git restore --staged ^<file1^> [file2] [file3] ... : Unstage files
-@echo   g rm          : git rm ^<file1^> [file2] [file3] ... : Delete files from repo
-@echo   g ren         : git mv ^<oldname^> ^<newname^> : rename files
-@echo   g mv          : git mv ^<src^> ^<dest^> : rename files
-@echo   g cm          : git commit -m ^<msg^> : Commits staged with message provided
-@echo   g c           : git commit : Opens your editor for commit message
-@echo   g c a         : git commit -a : Stages all ^& opens your editor for commit message
-@echo   g c fix       : git commit --amend : Change your previous commit message
-@echo   g pl          : git pull --rebase %VY_GIT_CMD_REMOTE% %VY_GIT_CMD_BRANCH%
-@echo   g ps          : git push %VY_GIT_CMD_REMOTE% %VY_GIT_CMD_BRANCH%
-@echo   g s           : git status
-@echo   g ss          : git status -s
-@echo   g l           : git log
-@echo   g l1          : git log --oneline
-@echo   g r           : git remote -v : List all remotes
-@echo   g r s         : git remote set-url %VY_GIT_CMD_REMOTE% ^<repo-url^> : Set URL for a remote
-@echo   g r a         : git remote add %VY_GIT_CMD_REMOTE% ^<repo-url^> : Also sets %VY_GIT_CMD_REMOTE% as default remote for branch %VY_GIT_CMD_BRANCH%
-@echo   g r d         : set VY_GIT_CMD_REMOTE=^<remote^> : set default remote
-@echo   g i           : git init : Initialize a git repository in a directory
-@echo   g cl          : git clone --origin %VY_GIT_CMD_REMOTE% ^<repo-url^> [target-dir]
-@echo   g b           : git branch -a : List all branches
-@echo   g b c         : git branch ^<branch^> : Create branch
-@echo   g b sw        : git switch ^<branch^>
-@echo   g b csw       : git switch -c ^<branch^> : Create ^& switch branch
-@echo   g b rm        : git branch -d ^<branch^> : Delete merged branch
-@echo   g b delU      : git branch -D ^<branch^> : Delete unmerged branch
-@echo   g b ren       : git branch -m ^<old-branch-name^> ^<new-branch-name^> : Rename unmerged branch
-@echo   g b d         : set VY_GIT_CMD_BRANCH=^<branch^> : set default branch
-@echo   g df          : git difftool --no-prompt ^<file/folder^>
-@echo   g con vsc     : Configure VSCode as git editor, difftool ^& mergetool
-@echo   g con so      : git config --show-origin --list
-@echo   g con so i    : git config --show-origin ^<item^>
+@echo   [92mg h        [0m   : [93mThis help message[0m
+@echo   [92mg a        [0m   : [91mgit add ^<file1^> [file2] [file3] ...[0m : [93mAdd files to staging area[0m
+@echo   [92mg us       [0m   : [91mgit restore --staged ^<file1^> [file2] [file3] ...[0m : [93mUnstage files[0m
+@echo   [92mg rm       [0m   : [91mgit rm ^<file1^> [file2] [file3] ...[0m : [93mDelete files from repo[0m
+@echo   [92mg ren      [0m   : [91mgit mv ^<oldname^> ^<newname^>[0m : [93mrename files[0m
+@echo   [92mg mv       [0m   : [91mgit mv ^<src^> ^<dest^>[0m : [93mrename files[0m
+@echo   [92mg cm       [0m   : [91mgit commit -m ^<msg^>[0m : [93mCommits staged with message provided[0m
+@echo   [92mg c        [0m   : [91mgit commit[0m : [93mOpens your editor for commit message[0m
+@echo   [92mg c a      [0m   : [91mgit commit -a[0m : [93mStages all ^& opens your editor for commit message[0m
+@echo   [92mg c fix    [0m   : [91mgit commit --amend[0m : [93mChange your previous commit message[0m
+@echo   [92mg pl       [0m   : [91mgit pull --rebase %VY_GIT_CMD_REMOTE% %VY_GIT_CMD_BRANCH%[0m
+@echo   [92mg ps       [0m   : [91mgit push %VY_GIT_CMD_REMOTE% %VY_GIT_CMD_BRANCH%[0m
+@echo   [92mg s        [0m   : [91mgit status[0m
+@echo   [92mg ss       [0m   : [91mgit status -s[0m
+@echo   [92mg l        [0m   : [91mgit log[0m
+@echo   [92mg l1       [0m   : [91mgit log --oneline[0m
+@echo   [92mg r        [0m   : [91mgit remote -v[0m : [93mList all remotes[0m
+@echo   [92mg r s      [0m   : [91mgit remote set-url %VY_GIT_CMD_REMOTE% ^<repo-url^>[0m : [93mSet URL for a remote[0m
+@echo   [92mg r a      [0m   : [91mgit remote add %VY_GIT_CMD_REMOTE% ^<repo-url^>[0m : [93mAlso sets %VY_GIT_CMD_REMOTE% as default remote for branch %VY_GIT_CMD_BRANCH%[0m
+@echo   [92mg r d      [0m   : [91mset VY_GIT_CMD_REMOTE=^<remote^>[0m : [93mset default remote[0m
+@echo   [92mg i        [0m   : [91mgit init[0m : [93mInitialize a git repository in a directory[0m
+@echo   [92mg cl       [0m   : [91mgit clone --origin %VY_GIT_CMD_REMOTE% ^<repo-url^> [target-dir][0m
+@echo   [92mg b        [0m   : [91mgit branch -a[0m : [93mList all branches[0m
+@echo   [92mg b c      [0m   : [91mgit branch ^<branch^>[0m : [93mCreate branch[0m
+@echo   [92mg b sw     [0m   : [91mgit switch ^<branch^>[0m
+@echo   [92mg b csw    [0m   : [91mgit switch -c ^<branch^>[0m : [93mCreate ^& switch branch[0m
+@echo   [92mg b rm     [0m   : [91mgit branch -d ^<branch^>[0m : [93mDelete merged branch[0m
+@echo   [92mg b delU   [0m   : [91mgit branch -D ^<branch^>[0m : [93mDelete unmerged branch[0m
+@echo   [92mg b ren    [0m   : [91mgit branch -m ^<old-branch-name^> ^<new-branch-name^>[0m : [93mRename unmerged branch[0m
+@echo   [92mg b d      [0m   : [91mset VY_GIT_CMD_BRANCH=^<branch^>[0m : [93mset default branch[0m
+@echo   [92mg df       [0m   : [91mgit difftool --no-prompt ^<file/folder^>[0m
+@echo   [92mg con vsc  [0m   : [93mConfigure VSCode as git editor, difftool ^& mergetool[0m
+@echo   [92mg con so   [0m   : [91mgit config --show-origin --list[0m
+@echo   [92mg con so i [0m   : [91mgit config --show-origin ^<item^>[0m
 @echo.
 @echo Set environment variable 'VY_GIT_CMD_REMOTE' to set remote. default='github', current='%VY_GIT_CMD_REMOTE%'
 @echo Set environment variable 'VY_GIT_CMD_BRANCH' to set branch. default='master', current='%VY_GIT_CMD_BRANCH%'
